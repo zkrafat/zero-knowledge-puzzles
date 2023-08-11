@@ -23,13 +23,10 @@ template NotEqual() {
     // Your code here.
     signal input a[2];
     signal output c;
-    signal temp;
-
-    temp <-- a[0] - a[1];
 
     component isz = IsZero();
 
-    isz.in <== temp;
+    isz.in <== a[0] - a[1];
 
     c <== 1 - isz.out;
    

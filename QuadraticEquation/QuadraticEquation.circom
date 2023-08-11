@@ -11,9 +11,24 @@ template QuadraticEquation() {
     signal input b;     // coeffecient of x 
     signal input c;     // constant c in equation
     signal input res;   // Expected result of the equation
-    signal output out;  // If res is correct , then return 1 , else 0 . 
+    signal output out;  // If res is correct , then return 1 , else 0 .
 
-    // your code here
+    signal temp1;
+    signal temp2;
+    signal sol;
+
+    temp1 <== b*x + c; 
+    temp2 <== x*x;
+
+    sol <== a*temp2 + temp1;
+
+    component eq = IsEqual();
+
+    eq.in[0] <== sol;
+    eq.in[1] <== res;
+
+    out <== eq.out;
+
 }
 
 component main  = QuadraticEquation();

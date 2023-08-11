@@ -1,5 +1,7 @@
 pragma circom 2.1.4;
 
+include "../node_modules/circomlib/circuits/mimcsponge.circom";
+
 
 
 // In this exercise, we will learn an important concept related to hashing . There are 2 values a and b. You want to 
@@ -17,6 +19,18 @@ pragma circom 2.1.4;
 
 template Salt() {
     // Your code here..
+    signal input a;
+    signal input b;
+    signal input salt;
+    signal output out;
+
+    component mimc = MiMCSponge(2,220,1);
+
+    mimc.ins[0] <== a;
+    mimc.ins[1] <== b;
+    mimc.k <== salt;
+
+    out <== mimc.outs[0];
 }
 
 component main  = Salt();
